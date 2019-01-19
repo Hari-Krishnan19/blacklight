@@ -21,7 +21,11 @@ module Blacklight
     def generate_devise_assets
       return unless options[:devise]
 
-      gem "devise"
+      if Rails::VERSION::MAJOR == 6
+        gem "devise", github: 'plataformatec/devise'
+      else
+        gem "devise"
+      end
       gem "devise-guests", "~> 0.6"
 
       Bundler.with_clean_env do
